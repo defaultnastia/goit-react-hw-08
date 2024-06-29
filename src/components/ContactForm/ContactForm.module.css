@@ -1,0 +1,22 @@
+.addContact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 20px 0px;
+  margin: auto;
+}
+
+.addContact button {
+  margin-top: 5px;
+}
+
+.error {
+  color: rgb(128, 14, 37);
+  font-size: small;
+}
+
+.addContact input::placeholder {
+  color: rgba(80, 93, 126, 0.599);
+}

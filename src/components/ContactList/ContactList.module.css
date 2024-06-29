@@ -1,0 +1,10 @@
+@import "../Contact/Contact.module.css";
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
