@@ -1,15 +1,25 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
-import HomePage from "./pages/HomePage/HomePage";
-import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
-import LoginPage from "./pages/LoginPage/LoginPage";
-import ContactsPage from "./pages/ContactsPage/ContactsPage";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsRefreshing } from "./redux/auth/selector";
-import { useEffect } from "react";
+import { lazy, useEffect } from "react";
 import { refreshUser } from "./redux/auth/operations";
 import RestrictedRoute from "./components/RestrictedRoute";
 import PrivateRoute from "./components/PrivateRoute";
+import { HashLoader } from "react-spinners";
+
+const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const RegistrationPage = lazy(() =>
+  import("./pages/RegistrationPage/RegistrationPage")
+);
+const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
+const ContactsPage = lazy(() => import("./pages/ContactsPage/ContactsPage"));
+
+//Loader
+const override = {
+  display: "block",
+  margin: "40px auto",
+};
 
 const App = () => {
   const dispatch = useDispatch();
@@ -20,7 +30,7 @@ const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <p>Refreshing</p>
+    <HashLoader color="#F95738" cssOverride={override} />
   ) : (
     <>
       <Layout>

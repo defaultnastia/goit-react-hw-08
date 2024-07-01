@@ -1,29 +1,37 @@
-import { Tooltip } from "react-tooltip";
+import _ from "lodash";
 import css from "./Contact.module.css";
-import { faker } from "@faker-js/faker";
 
-const Contact = ({ contact, handleDeletingContact }) => {
+const selectDummyAvatar = () => {
+  const avatar = _.sample(["🥵", "👹", "😈", "🐟", "🐙", "🐦", "🌚", "🌝"]);
+  return avatar;
+};
+
+const Contact = ({ contact, handleDeletingContact, handleEditingContact }) => {
   return (
     <div className={css.contactBox}>
-      <img
-        src={faker.image.urlPicsumPhotos({ height: 80, width: 80 })}
-        alt="avatar"
-      />
+      <p className={css.avatar}>{selectDummyAvatar()}</p>
       <div className={css.contactInfo}>
         <p>{contact.name}</p>
         <p>{contact.number}</p>
-        {/* <button>Add to Call</button> */}
       </div>
-      <button
-        className={css.delete}
-        data-tooltip-id="delete"
-        onClick={() => {
-          handleDeletingContact(contact.id);
-        }}
-      >
-        ❌
-      </button>
-      <Tooltip id="delete" content="Delete contact" place="right" />
+      <div className={css.controls}>
+        <button
+          className={css.edit}
+          onClick={() => {
+            handleEditingContact(contact);
+          }}
+        >
+          Edit
+        </button>
+        <button
+          className={css.delete}
+          onClick={() => {
+            handleDeletingContact(contact);
+          }}
+        >
+          Delete
+        </button>
+      </div>
     </div>
   );
 };

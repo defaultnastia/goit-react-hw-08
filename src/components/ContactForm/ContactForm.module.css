@@ -20,3 +20,9 @@
 .addContact input::placeholder {
   color: rgba(80, 93, 126, 0.599);
 }
+
+.addContact .cancel {
+  background-color: transparent;
+  color: var(--headers);
+  margin-left: 4px;
+}

@@ -1,17 +1,11 @@
 import { useId } from "react";
-import { addContact } from "../../redux/contacts/operations.js";
-import { Field, Form, Formik, ErrorMessage } from "formik";
-import { faker } from "@faker-js/faker";
-import { InputMask } from "@react-input/mask";
-import * as Yup from "yup";
+import { addContact, updateContact } from "../../redux/contacts/operations.js";
 import { useDispatch } from "react-redux";
-import css from "./ContactForm.module.css";
+import { InputMask } from "@react-input/mask";
+import { Field, Form, Formik, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import HeadingLine from "../HeadingLine/HeadingLine.jsx";
-
-const initialValues = {
-  name: "",
-  number: "",
-};
+import css from "./ContactForm.module.css";
 
 const MaskedInput = (props) => (
   <InputMask mask="___-__-__" replacement={{ _: /\d/ }} {...props} />
@@ -28,12 +22,34 @@ const contactValidationSchema = Yup.object().shape({
     .required("Please enter contact's phone"),
 });
 
-const ContactForm = () => {
+const ContactForm = ({ editedContact, cancelContactUpdate }) => {
+  const initialValues = editedContact
+    ? { name: editedContact.name, number: editedContact.number }
+    : {
+        name: "",
+        number: "",
+      };
+
   const dispatch = useDispatch();
+
+  const updateContactLogic = (values) => {
+    if (
+      values.name === editedContact.name &&
+      values.number === editedContact.number
+    ) {
+      cancelContactUpdate();
+      return;
+    }
+
+    dispatch(updateContact({ id: editedContact.id, info: values }));
+    cancelContactUpdate();
+  };
 
   const handleSubmit = (values, actions) => {
     values.name = values.name.trim();
-    dispatch(addContact(values));
+
+    editedContact ? updateContactLogic(values) : dispatch(addContact(values));
+    cancelContactUpdate;
     actions.resetForm();
   };
 
@@ -42,16 +58,21 @@ const ContactForm = () => {
 
   return (
     <div>
-      <HeadingLine text="Add a new contact" />
+      <HeadingLine
+        text={editedContact ? "Update contact" : "Add a new contact"}
+      />
+
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
         validationSchema={contactValidationSchema}
+        enableReinitialize
       >
         <Form className={css.addContact} autoComplete="off">
           <label htmlFor={nameFieldId}>Name</label>
           <Field name="name" id={nameFieldId} placeholder="Name Surname" />
           <ErrorMessage className={css.error} name="name" component="span" />
+
           <label htmlFor={phoneFieldId}>Phone</label>
           <Field
             name="number"
@@ -60,7 +81,17 @@ const ContactForm = () => {
             placeholder="000-00-00"
           />
           <ErrorMessage className={css.error} name="number" component="span" />
-          <button type="submit">Add Contact</button>
+
+          <div>
+            <button type="submit">
+              {editedContact ? "Update Contact" : "Add Contact"}
+            </button>
+            {editedContact && (
+              <button className={css.cancel} onClick={cancelContactUpdate}>
+                Cancel
+              </button>
+            )}
+          </div>
         </Form>
       </Formik>
     </div>

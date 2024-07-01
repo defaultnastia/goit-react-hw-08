@@ -29,7 +29,6 @@ export const login = createAsyncThunk(
     try {
       const response = await axios.post("/users/login", credentials);
       setAuthHeader(response.data.token);
-      console.log(axios.defaults.headers.common);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

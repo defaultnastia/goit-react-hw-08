@@ -1,9 +1,9 @@
-import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useId } from "react";
-import * as Yup from "yup";
-import css from "./LoginForm.module.css";
 import { useDispatch } from "react-redux";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import * as Yup from "yup";
 import { login } from "../../redux/auth/operations";
+import css from "./LoginForm.module.css";
 
 const initialValues = {
   email: "",
@@ -29,7 +29,6 @@ const LoginForm = () => {
 
   const handleSubmit = (values, actions) => {
     values.email = values.email.trim();
-    console.log(values);
     dispatch(login(values));
     actions.resetForm();
   };

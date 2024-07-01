@@ -31,7 +31,7 @@ export default function AlertDialogSlide({
       className={css.dialog}
     >
       <DialogTitle>
-        {"Are you sure you want to delete the contact?"}
+        {`Are you sure you want to delete the ${currentContact?.name}'s contact?`}
       </DialogTitle>
       <DialogActions>
         <Button
@@ -44,7 +44,7 @@ export default function AlertDialogSlide({
         <Button
           className={css.yes}
           onClick={() => {
-            dispatch(deleteContact(currentContact));
+            dispatch(deleteContact(currentContact?.id));
             handleOpenAlert(false);
           }}
         >
