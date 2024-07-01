@@ -35,7 +35,9 @@ const ContactsPage = () => {
         <SearchBox />
       </div>
       {!error ? <ContactList /> : <HeadingLine error={error} />}
-      {loading && <HashLoader color="#F95738" cssOverride={override} />}
+      {loading && !error && (
+        <HashLoader color="#F95738" cssOverride={override} />
+      )}
     </div>
   );
 };

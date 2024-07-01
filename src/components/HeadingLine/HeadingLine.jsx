@@ -8,14 +8,14 @@ const HeadingLine = ({ error = false, text }) => {
       </h2>
       {error && (
         <>
+          <img
+            src="https://assets.bigcartel.com/product_images/228233459/PikachuMeme.png?auto=format&fit=max&w=1500"
+            alt="shocked pikachu"
+            width="200px"
+          />
           <p>
             ERROR: <span>{error}</span>
           </p>
-          <img
-            src="https://i.imgflip.com/8h26xs.png"
-            alt="sad hamster"
-            width="100px"
-          />
         </>
       )}
     </div>

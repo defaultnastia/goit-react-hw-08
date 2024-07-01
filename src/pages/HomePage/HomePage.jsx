@@ -13,7 +13,7 @@ const HomePage = () => {
         <p>🍭 Hello, I am a Phone Book, please log in to start! 🍭</p>
       )}
       <iframe
-        src="https://giphy.com/embed/WoWm8YzFQJg5i"
+        src="https://giphy.com/embed/cNM0CV7z8sdq"
         width="480"
         height="350"
         className={css.gif}
