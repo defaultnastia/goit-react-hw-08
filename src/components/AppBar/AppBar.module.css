@@ -1,0 +1,8 @@
+.bar {
+  padding: 12px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--borders);
+  font-size: 18px;
+}

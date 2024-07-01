@@ -1,0 +1,19 @@
+.home {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+}
+
+.home p {
+  display: block;
+  padding: 20px;
+  font-size: larger;
+  color: var(--text);
+}
+
+.gif {
+  border: none;
+  border-radius: 28px;
+  pointer-events: none;
+  box-shadow: var(--borders) 0px 20px 30px -10px;
+}

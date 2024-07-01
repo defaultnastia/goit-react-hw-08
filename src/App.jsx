@@ -1,39 +1,57 @@
+import { Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout";
+import HomePage from "./pages/HomePage/HomePage";
+import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import ContactsPage from "./pages/ContactsPage/ContactsPage";
 import { useDispatch, useSelector } from "react-redux";
+import { selectIsRefreshing } from "./redux/auth/selector";
 import { useEffect } from "react";
-import { fetchContacts } from "./redux/contactsOps.js";
-import { selectError, selectLoading } from "./redux/contactsSlice.js";
-import { Toaster } from "react-hot-toast";
-import { HashLoader } from "react-spinners";
-import ContactForm from "./components/ContactForm/ContactForm.jsx";
-import SearchBox from "./components/SearchBox/SearchBox.jsx";
-import ContactList from "./components/ContactList/ContactList.jsx";
-import HeadingLine from "./components/HeadingLine/HeadingLine.jsx";
-
-//Loader
-const override = {
-  display: "block",
-  margin: "40px auto",
-};
+import { refreshUser } from "./redux/auth/operations";
+import RestrictedRoute from "./components/RestrictedRoute";
+import PrivateRoute from "./components/PrivateRoute";
 
 const App = () => {
   const dispatch = useDispatch();
-  const error = useSelector(selectError);
-  const loader = useSelector(selectLoading);
+  const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
-  return (
+
+  return isRefreshing ? (
+    <p>Refreshing</p>
+  ) : (
     <>
-      <div>
-        <Toaster />
-      </div>
-      <HeadingLine text={"📒 Add a New Contact ✍️"} />
-      {!error && <ContactForm />}
-      <HeadingLine error={error} text={"👽 Contacts From A to Z 🛸"} />
-      {!error && <SearchBox />}
-      {loader && <HashLoader color="#fff" cssOverride={override} />}
-      {!error && !loader && <ContactList />}
+      <Layout>
+        <Routes>
+          <Route path="/" element={<HomePage />}></Route>
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<RegistrationPage />}
+              />
+            }
+          ></Route>
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<LoginPage />}
+              />
+            }
+          ></Route>
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+            }
+          ></Route>
+        </Routes>
+      </Layout>
     </>
   );
 };

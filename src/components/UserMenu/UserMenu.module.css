@@ -1,0 +1,16 @@
+.user {
+  display: flex;
+  gap: 20px;
+  align-items: baseline;
+}
+
+.user button {
+  font: inherit;
+  color: var(--text);
+  background-color: transparent;
+  border: 1px solid var(--text);
+  border-radius: 12px;
+  &:hover {
+    background-color: transparent;
+  }
+}

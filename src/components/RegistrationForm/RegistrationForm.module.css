@@ -1,0 +1,19 @@
+.form {
+  margin: 0 auto;
+  padding: 20px;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.error {
+  color: crimson;
+  font-size: smaller;
+}

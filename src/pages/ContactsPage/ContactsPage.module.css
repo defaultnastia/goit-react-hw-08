@@ -1,0 +1,12 @@
+.controls {
+  padding: 10px 0;
+  display: flex;
+}
+
+.controls > div:first-child {
+  border-right: 1px solid var(--borders);
+}
+
+.controls > div {
+  width: 50%;
+}

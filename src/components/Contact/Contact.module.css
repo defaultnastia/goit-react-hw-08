@@ -1,15 +1,18 @@
 .contact {
+  position: relative;
   width: 200px;
   border-radius: 10px;
-  background-color: rgba(217, 224, 244, 0.635);
-  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  border: 1px solid var(--borders);
+  background-color: transparent;
+  color: var(--text);
+  box-shadow: var(--borders) 0px 20px 30px -10px;
   transition: 0.2s ease-out;
   transition-property: background-color, color, scale;
   &:hover {
-    background-color: #2c2264;
-    color: antiquewhite;
+    position: relative;
+    background-color: var(--headers);
+    color: var(--base);
     scale: 1.02;
-    cursor: pointer;
   }
 }
 
@@ -50,8 +53,6 @@
 .delete {
   margin-top: 10px;
   width: 100%;
-  border: 1px solid antiquewhite;
-  border-radius: 5px;
   text-align: center;
   padding: 0;
 }
