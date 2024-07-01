@@ -1,0 +1,28 @@
+.dialog {
+  padding: 40px;
+  color: var(--text);
+}
+
+.dialog button {
+  width: fit-content;
+  cursor: pointer;
+  color: whitesmoke;
+  font: inherit;
+  padding: 4px 4px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--text);
+  transition: 0.1s ease-in-out;
+  transition-property: scale, background-color;
+  &:hover {
+    scale: 1.03;
+    background-color: var(--text);
+  }
+}
+
+.dialog .yes {
+  background-color: crimson;
+  &:hover {
+    background-color: crimson;
+  }
+}

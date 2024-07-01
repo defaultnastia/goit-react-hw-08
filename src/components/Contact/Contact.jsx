@@ -1,12 +1,8 @@
-import { deleteContact } from "../../redux/contacts/operations.js";
-import { useDispatch } from "react-redux";
 import { Tooltip } from "react-tooltip";
 import css from "./Contact.module.css";
 import { faker } from "@faker-js/faker";
 
-const Contact = ({ contact }) => {
-  const dispatch = useDispatch();
-
+const Contact = ({ contact, handleDeletingContact }) => {
   return (
     <div className={css.contactBox}>
       <img
@@ -22,7 +18,7 @@ const Contact = ({ contact }) => {
         className={css.delete}
         data-tooltip-id="delete"
         onClick={() => {
-          dispatch(deleteContact(contact.id));
+          handleDeletingContact(contact.id);
         }}
       >
         ❌
