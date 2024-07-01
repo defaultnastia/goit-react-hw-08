@@ -4,14 +4,14 @@
   align-items: center;
   gap: 12px;
   padding: 20px 20px;
-  color: var(--darkheaders);
+  color: var(--headers);
 }
 
 .headingBox p {
   padding: 4px 12px;
   border-radius: 8px;
-  background-color: rgba(220, 20, 60, 0.642);
-  color: antiquewhite;
+  background-color: red;
+  color: var(--base);
   text-align: center;
 }
 
