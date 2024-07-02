@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 axios.defaults.baseURL = "https://connections-api.goit.global/";
 
@@ -18,6 +19,7 @@ export const register = createAsyncThunk(
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
+      toast.error(`Registration failed with error "${error.message}"`);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -31,6 +33,7 @@ export const login = createAsyncThunk(
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
+      toast.error(`Login failed with error "${error.message}"`);
       return thunkAPI.rejectWithValue(error.message);
     }
   }

@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Toaster } from "react-hot-toast";
 import { HashLoader } from "react-spinners";
 import { fetchContacts } from "../../redux/contacts/operations";
 import { selectError, selectLoading } from "../../redux/contacts/selectors";
@@ -54,8 +53,6 @@ const ContactsPage = () => {
 
   return (
     <div>
-      <Toaster />
-
       <AlertDialogSlide
         openAlert={openAlert}
         handleOpenAlert={handleOpenAlert}
