@@ -3,16 +3,14 @@ import { fetchContacts } from "./operations";
 import { logout } from "../auth/operations";
 
 const initialState = {
-  contacts: {
-    items: [],
-    loading: false,
-    error: null,
-  },
+  items: [],
+  loading: false,
+  error: null,
 };
 
 const contactsSlice = createSlice({
   name: "contacts",
-  initialState: initialState.contacts,
+  initialState,
   extraReducers: (builder) => {
     builder
       .addCase(fetchContacts.fulfilled, (state, action) => {
